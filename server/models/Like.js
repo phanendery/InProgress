@@ -9,5 +9,7 @@ const LikeSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "users",
-  }
+  },
 });
+
+module.exports = mongoose.model("likes", LikeSchema);

@@ -12,16 +12,18 @@ const RecipeSchema = new Schema({
   },
   ingredients: [
     {
-      type: String
+      type: String,
     },
   ],
-  pictures:[
-      {
-          type: String
-      }
+  pictures: [
+    {
+      type: String,
+    },
   ],
   date: {
     type: Date,
     default: Date.now,
   },
 });
+
+module.exports = mongoose.model("recipes", RecipeSchema);
