@@ -50,7 +50,7 @@ const RootQueryType = new GraphQLObjectType({
     },
     comments: {
       type: new GraphQLList(CommentType),
-      resolve() {
+      resolve() {s
         return Comment.find({});
       },
     },

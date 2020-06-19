@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+// const { GraphQLBoolean } = require("graphql");
 const Schema = mongoose.Schema;
 
 const LikeSchema = new Schema({
@@ -9,7 +10,7 @@ const LikeSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "users",
-  },
+  }
 });
 
 module.exports = mongoose.model("likes", LikeSchema);

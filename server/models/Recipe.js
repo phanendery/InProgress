@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const RecipeType = require("../schema/types/recipe_type");
 const Schema = mongoose.Schema;
 
 const RecipeSchema = new Schema({
