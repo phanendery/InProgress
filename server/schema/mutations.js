@@ -6,6 +6,7 @@ const RecipeType = require("./types/recipe_type");
 const LikeType = require("./types/like_type");
 const CommentType = require("./types/comment_type");
 const UserType = require("./types/user_type");
+const AuthService = require("../services/auth");
 
 const Recipe = mongoose.model("recipes");
 const Comment = mongoose.model("recipes");
@@ -55,20 +56,49 @@ const mutation = new GraphQLObjectType({
         name: { type: GraphQLString },
         username: { type: GraphQLString },
         password: { type: GraphQLString },
+        s,
       },
       resolve(_, { name, username, password }) {
-        // return AuthService.register(args);
-        return new User({ name, username, password }).save();
+        return AuthService.register(args);
+        // return new User({ name, username, password }).save();
+      },
+    },
+    login: {
+      type: UserType,
+      args: {
+        username: { type: GraphQLString },
+        password: { type: GraphQLString },
+      },
+      resolve(_, args) {
+        return AuthService.login(args);
+      },
+    },
+    logout: {
+      type: UserType,
+      args: {
+        _id: { type: GraphQLID },
+      },
+      resolve(_, args) {
+        return AuthService.logout(args);
+      },
+    },
+    verifyUser: {
+      type: UserType,
+      args: {
+        token: { type: GraphQLString },
+      },
+      resolve(_, args) {
+        return AuthService.verifyUser(args);
       },
     },
     newLike: {
       type: LikeType,
       args: {
-        recipeId: { type: GraphQLID },
-        userId: { type: GraphQLID },
+        recipe: { type: GraphQLID },
+        user: { type: GraphQLID },
       },
-      resolve(_, { recipeId, userId }) {
-        return new Like({ recipeId, userId }).save();
+      resolve(_, { recipe, user }) {
+        return new Like({ recipe, user }).save();
       },
     },
   },

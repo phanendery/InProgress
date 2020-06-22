@@ -14,3 +14,14 @@ const LikeSchema = new Schema({
 });
 
 module.exports = mongoose.model("likes", LikeSchema);
+
+LikeSchema.statics.newLike = (recipeId,userId) =>{
+  const User = mongoose.model("users");
+  const Recipe = mongoose.model("recipes");
+  
+  return User.findById(userId).then((user) =>{
+    if(user){
+      
+    }
+  })
+}

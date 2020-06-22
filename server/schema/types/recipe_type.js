@@ -6,7 +6,6 @@ const User = mongoose.model("users");
 
 const RecipeType = new GraphQLObjectType({
   name: "RecipeType",
-  // remember we wrap the fields in a thunk to avoid circular dependency issues
   fields: () => ({
     _id: { type: GraphQLID },
     name: { type: GraphQLString },
