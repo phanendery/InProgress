@@ -56,7 +56,6 @@ const mutation = new GraphQLObjectType({
         name: { type: GraphQLString },
         username: { type: GraphQLString },
         password: { type: GraphQLString },
-        s,
       },
       resolve(_, { name, username, password }) {
         return AuthService.register(args);
